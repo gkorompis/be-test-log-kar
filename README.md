@@ -47,10 +47,55 @@
 
 ### 4.1 Product
 ```
-product_name: string,
-product_type: string, enum: ["keripik pangsit"],
-product_variant: string, enum: ["small", "medium", "lage"],
-product_price: number,
-created_date: Date
+interface ProductInsertRow {
+    product_name: string,
+    product_type: string, enum: ["keripik pangsit"],
+    product_variant: string, enum: ["small", "medium", "lage"],
+    product_price: number,
+    created_date: Date
+}
+interface ProductViewRow {
+    product_name: string,
+    product_type: string, enum: ["keripik pangsit"],
+    product_variant: string, enum: ["small", "medium", "lage"],
+    product_price: number,
+    created_date: Date
+}
+interface ProductWithTypeCountRow {
+    product_name: string,
+    product_type: string, enum: ["keripik pangsit"],
+    product_variant: string, enum: ["small", "medium", "lage"],
+    product_price: number,
+    quantity: number
+}
+```
+
+### 4.2 Transaction
+```
+interface TransactionInsertRow {
+    id: uuid,
+    customer_name: string unique,
+    product_id: number,
+    quantity: number,
+    transaction_date: Date,
+}
+interface TransactionViewRow {
+    id: uuid,
+    customer_name: string unique,
+    product_name: string,
+    product_size: string,
+    product_variant: string,
+    quantity: number,
+    transaction_date: Date,
+}
+```
+
+### 4.3 Customer
+```
+interface CustomerInsertRow{
+    id: unique,
+    customer_name: string unique,
+    customer_points: number,
+}
 ```
  
