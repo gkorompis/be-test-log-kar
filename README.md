@@ -18,11 +18,21 @@
 | req-13 | system can map authenticate redeem by matching size price with customer_points | req-11 |
 | req-14 | system can update by decreasing customer_points after redeem | req-11 |
 | req-15 | system can update product_quantity after each payment or redeem | req-15 |
+| req-16 | system can update transaction_status of transaction_id after payment | req-6 |
 
-## 2. Route Layers
+## 2. Route Layers CRUD
 | Route | Create | Read (All, One) | Update (One) | Delete (One) |
 |------|------|------|------|------|
 | Product | /products | /products, /products/:id | /products/:id?query | - |
 | Transactions | /transactions | /transactions, /transactions/:id | /transactions/:id?query | - |
-| Customer | /customers | /customers/:id | /customers/:id?query | - |
+| Customer | - | /customers/:id | /customers/:id?query | - |
 | Payment | - | - | - | - |
+
+## 3. Route - Service - DAO Layers Mapping
+
+| Route | Method | Service Name | Service Logic | DAO Mapping | Requirement Mapping |
+|------|------|------|------|------|------|
+| /product | GET | listProducts(needCounts:false) | to list products without addition quantity (count) information for each product_type | findAllProduct | req-1 |
+| /product | GET | listProducts(needCounts:true) | to list products with addition quantity (count) information for each product_type | findAllProductWithTypeCount | req-2, req-1 |
+| /product | POST | addNewProduct | adding product_name, product_type, product_variant, product_size, product_harga with automatics created_date | createProduct | req-3, req-4 |
+
