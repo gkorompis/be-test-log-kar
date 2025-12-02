@@ -42,4 +42,15 @@
 | /payment/redeem | PUT | authenticateRedeem | this service will convert transaction_total_price into points and then will match customer points | getTransaction(id), getCustomer(id) | req-11, req-12, req-13 |
 | - | - | minusCustomerPoints | this service will be called by authenticateRedeem to update by substracting customer_name's customer_points | updateBySubtractingCustomerPoint | req-14 |
 | - | - | labelPaidTransaction | this service will be called by either authenticatePayment or authenticateRedeem to update transactionId status | updateTransaction(id) | req-15, req-6 |
+
+## 4. Model Schema
+
+### 4.1 Product
+```
+product_name: string,
+product_type: string, enum: ["keripik pangsit"],
+product_variant: string, enum: ["small", "medium", "lage"],
+product_price: number,
+created_date: Date
+```
  
