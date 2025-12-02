@@ -1,8 +1,8 @@
 # Backend Test Log Kar
 
-## 1. Requirement
+## 1. Business Requirements
 | No | Requirement | Group |
-|---|---------------------------|----------|
+|---|---------------------|----------|
 | req-1 | user can list product | req-1 |
 | req-2 | user can list product's availability (quantity) | req-1 |
 | req-3 | user can add product by inserting: product_name, product_type, product_variant, product_size, product_harga | req-3 | 
