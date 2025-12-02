@@ -46,7 +46,7 @@
 ## 4. Model Schema
 
 ### 4.1 Product
-```
+```javascript
 interface ProductInsertRow {
     product_name: string,
     product_type: string, enum: ["keripik pangsit"],
@@ -71,7 +71,7 @@ interface ProductWithTypeCountRow {
 ```
 
 ### 4.2 Transaction
-```
+```javascript
 interface TransactionInsertRow {
     id: uuid,
     customer_name: string unique,
@@ -91,7 +91,7 @@ interface TransactionViewRow {
 ```
 
 ### 4.3 Customer
-```
+```javascript
 interface CustomerInsertRow{
     id: unique,
     customer_name: string unique,
