@@ -19,3 +19,10 @@
 | req-14 | system can update by decreasing customer_points after redeem | req-11 |
 | req-15 | system can update product_quantity after each payment or redeem | req-15 |
 
+## 2. Route Layers
+| Route | Create | Read (All, One) | Update (One) | Delete (One) |
+|------|------|------|------|------|
+| Product | /products | /products, /products/:id | /products/:id?query | - |
+| Transactions | /transactions | /transactions, /transactions/:id | /transactions/:id?query | - |
+| Customer | /customers | /customers/:id | /customers/:id?query | - |
+| Payment | - | - | - | - |
