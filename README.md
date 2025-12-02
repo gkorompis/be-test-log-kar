@@ -36,4 +36,7 @@
 | /product | GET | listProducts(needCounts:true) | to list products with addition quantity (count) information for each product_type | findAllProductWithTypeCount | req-2, req-1 |
 | /product | POST | addNewProduct | adding product with fields product_name, product_type, product_variant, product_size, product_harga, and automatic created_date | createProduct | req-3, req-4 |
 | /transaction | POST | addNewTransaction | adding transactionw with fields customer_name, product_name, product_size, product_type, product_quantity, and automatic transaction_date, transaction_id (unique) | createTransaction | req-5 |
-
+| /payment/transfer | POST | authenticatePayment | this service will match transaction_total_price with default money | - | req-6 |
+| - | - | calculatePointsPerTransaction | this service will be called by authenticatePayment | getTransaction(id) | req-7, req-6 |
+| - | - | registerNewUser | this service will be called by authenticatePayment to check if customer_name existed or not, if doesn't exist it will create new one | addNewCustomer | req-8, req-9, req-6 |
+| - | - | addCustomerPoints | this service will be called by authenticatePayment by updating customer_name's customer_points | CustomerPoint | updateByAddingCustomerPoint | req-10 |
