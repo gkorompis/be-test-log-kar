@@ -1,4 +1,19 @@
 # Backend Test Log Kar
+## 0. Setting up
+```
+#1. clone this repo
+git clone https://github.com/gkorompis/be-test-log-kar
+cd be-test-log-kar/server
+
+#2. run docker images
+docker compose up -d
+
+#3. initiate table read in development phase
+docker exec -i postgres-db psql -U postgres -d bsnack < schema.sql
+```
+Author's Disclaimer: "I noticed that Go language was originally expewcted to be implemented. While I might need around 1-2 weeks learning curve to properly keep up with Go language, as an alternative I'm using node.js for the backend, awhich aligns with my existing experience in MERN-based backend development. 
+
+That said, I hope this submission can still demonstrate my ability in backend development that is fundamentally language-agnostic. I hope to show that I'm capable to carry out backend development task, especially in api MVC design, containerizing, and event-driven patterns."
 
 ## 1. Business Requirements
 | No | Requirement | Group |
@@ -33,7 +48,7 @@
 |------|------|------|------|------|------|
 | /product | GET | listProducts(needCounts:false) | to list products without addition quantity (count) information for each product_type | findAllProduct | req-1 |
 | /product | GET | listProducts(needCounts:true) | to list products with addition quantity (count) information for each product_type | findAllProductWithTypeCount | req-2, req-1 |
-| /product | POST | addNewProduct | adding product with fields product_name, product_type, product_variant, product_size, product_harga, and automatic created_date | createProduct | req-3, req-4 |
+| /product | POST | createNewProduct | adding product with fields product_name, product_type, product_variant, product_size, product_harga, and automatic created_date | insertProduct | req-3, req-4 |
 | /transaction | POST | addNewTransaction | adding transactionw with fields customer_name, product_name, product_size, product_type, product_quantity, and automatic transaction_date, transaction_id (unique) | createTransaction | req-5 |
 | /payment/transfer | PUT | authenticatePayment | this service will match transaction_total_price with default money | - | req-6 |
 | - | - | calculatePointsPerTransaction | this service will be called by authenticatePayment | getTransaction(id) | req-7, req-6 |
@@ -98,4 +113,36 @@ interface CustomerInsertRow{
     customer_points: number,
 }
 ```
+
+## 5. API Documentation
+
+### 5.1 Products
+
+| route | method | parameters | query | body |
+|------|------|------|------|------|
+| /products | POST | - | - | product_name, product_type, product_variant, product_price |
+```javascript
+// Example Request Body
+{
+"product_name": "Keripik Ori",
+"product_type": "keripik pangsit",
+"product_variant": "large",
+"product_price": "15000.00"
+}
+// Example Response Body
+{
+    "response": {
+        "id": 7,
+        "product_name": "Keripik Ori",
+        "product_type": "keripik pangsit",
+        "product_variant": "large",
+        "product_price": "15000.00",
+        "created_date": "2025-12-03T13:15:04.588Z"
+    }
+}
+```
+
+
+
+
  

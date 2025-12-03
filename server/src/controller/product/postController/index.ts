@@ -1,16 +1,25 @@
 import type { Request, Response } from 'express';
+import productService from '../../../services/productServices/index.js';
 
 const controllerName = "postController";
-const group = "Product"
+const group = "Product";
 
 const productPostController = async (req: Request, res: Response) =>{
     try {
         //request parameters
         console.log(`>>>>${controllerName} at ${group}`);
-        const document = req.body || {};
+        const document = req.body || 
+        {
+            product_name: "Keripik Ori",
+            product_type: "keripik pangsit",
+            product_variant: "small",
+            product_price: 12000,
+        };
         
-        //dao
-        const response = {payload: "product post response"};
+        //service logic
+        const createdResult = await productService.createNewProduct(document)
+
+        const response = createdResult;
 
         //response
         console.log(`>>>>response ${controllerName} at ${group}`, response);
