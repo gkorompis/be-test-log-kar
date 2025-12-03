@@ -1,0 +1,109 @@
+{
+	"info": {
+		"_postman_id": "f32a9d2c-7281-4fe3-be0f-5b7f779a7a54",
+		"name": "backend-test-log-kar",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "22556896"
+	},
+	"item": [
+		{
+			"name": "default-check",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "localhost:5001"
+			},
+			"response": []
+		},
+		{
+			"name": "product-post",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"product_name\": \"Keripik Ori\",\n\"product_type\": \"keripik pangsit\",\n\"product_variant\": \"large\",\n\"product_price\": \"15000.00\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost:5001/product"
+			},
+			"response": []
+		},
+		{
+			"name": "product-get",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "localhost:5001/product"
+			},
+			"response": []
+		},
+		{
+			"name": "transaction-post",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": "localhost:5001/transaction"
+			},
+			"response": []
+		},
+		{
+			"name": "transaction-get",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "localhost:5001/transaction"
+			},
+			"response": []
+		},
+		{
+			"name": "transaction-get-one",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "localhost:5001/transaction/one/1"
+			},
+			"response": []
+		},
+		{
+			"name": "customer-get",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "localhost:5001/customer"
+			},
+			"response": []
+		},
+		{
+			"name": "customer-get-one",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "localhost:5001/customer"
+			},
+			"response": []
+		},
+		{
+			"name": "payment-transfer-post",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": "localhost:5001/payment/transfer/123000"
+			},
+			"response": []
+		},
+		{
+			"name": "payment-redeem-post",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": "localhost:5001/payment/redeem/123000"
+			},
+			"response": []
+		}
+	]
+}
