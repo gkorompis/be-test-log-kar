@@ -1,0 +1,34 @@
+import * as dotenv from 'dotenv';
+import express from 'express';
+import cors from 'cors';
+import cookieParser from 'cookie-parser';
+import { customerRoute, paymentRoute, productRoute, transactionRoute } from './routes/index.js';
+
+// declare secrets env
+dotenv.config();
+const PORT = process.env.PORT || 5002
+
+// initiating express
+const app = express();
+
+// middlewares
+app.use(express.json());
+app.use(cookieParser());
+app.use(cors());
+
+// routes
+app.use("/product", productRoute);
+app.use("/transaction", transactionRoute);
+app.use("/customer", customerRoute);
+app.use("/payment", paymentRoute);
+
+app.get("/", (req,res)=>{
+    res.send("testing backend server log kar")
+});
+
+app.listen(PORT, ()=>{
+    console.log(`server running on PORT ${PORT}`)
+})
+
+
+
