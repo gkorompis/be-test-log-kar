@@ -6,7 +6,7 @@ import { customerRoute, paymentRoute, productRoute, transactionRoute } from './r
 
 // declare secrets env
 dotenv.config();
-const PORT = process.env.PORT || 5002
+const PORT = process.env.PORT || 5002;
 
 // initiating express
 const app = express();
@@ -26,9 +26,7 @@ app.get("/", (req,res)=>{
     res.send("testing backend server log kar")
 });
 
-app.listen(PORT, ()=>{
-    console.log(`server running on PORT ${PORT}`)
+app.listen(PORT as any,"0.0.0.0", ()=>{
+    console.log(`>>>server running on PORT ${PORT}`)
 })
-
-
 
