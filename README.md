@@ -1,4 +1,16 @@
 # Backend Test Log Kar
+## 0. Setting up
+```
+#1. clone this repo
+git clone https://github.com/gkorompis/be-test-log-kar
+cd be-test-log-kar/server
+
+#2. run docker images
+docker compose up -d
+
+#3. initiate table read in development phase
+docker exec -i postgres-db psql -U postgres -d bsnack < schema.sql
+```
 
 ## 1. Business Requirements
 | No | Requirement | Group |
@@ -126,6 +138,8 @@ interface CustomerInsertRow{
     }
 }
 ```
+
+
 
 
  

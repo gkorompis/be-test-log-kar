@@ -1,4 +1,17 @@
 services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile 
+    container_name: node-app
+    restart: always
+    ports:
+      - "5000:5000"         
+    environment:
+      - NODE_ENV=development
+      - DATABASE_URL=postgres://postgres:postgres@db:5432/bsnack
+    depends_on:
+      - db
   db:
     image: postgres:15
     container_name: postgres-db
