@@ -15,7 +15,7 @@ COPY src ./src
 RUN npx tsc
 
 # expose port
-EXPOSE 5000
+EXPOSE 5001
 
 # run compiled JS
 CMD ["node", "dist/index.js"]
