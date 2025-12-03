@@ -1,7 +1,8 @@
 import * as dotenv from 'dotenv';
 import express from 'express';
 import cors from 'cors';
-import cookieParser from 'cookie-parser'
+import cookieParser from 'cookie-parser';
+import { productRoute } from './routes/index.js';
 
 // declare secrets env
 dotenv.config();
@@ -16,10 +17,10 @@ app.use(cookieParser());
 app.use(cors());
 
 // routes
-// app.use("/products", productsRoute)
+app.use("/product", productRoute)
 
 app.get("/", (req,res)=>{
-    res.send("testing backend server")
+    res.send("testing backend server log kar")
 });
 
 app.listen(PORT, ()=>{
