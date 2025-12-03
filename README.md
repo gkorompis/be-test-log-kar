@@ -103,27 +103,29 @@ interface CustomerInsertRow{
 
 ### 5.1 Products
 
-| route | method | parameters | query | request body | expected response |
-|------|------|------|------|------|------|
-| /products | POST | - | - | \`\`\`json
+| route | method | parameters | query | body |
+|------|------|------|------|------|
+| /products | POST | - | - | product_name, product_type, product_variant, product_price |
+```javascript
+// Example Request Body
 {
-  "product_name": "Keripik Ori",
-  "product_type": "keripik pangsit",
-  "product_variant": "large",
-  "product_price": "15000.00"
+"product_name": "Keripik Ori",
+"product_type": "keripik pangsit",
+"product_variant": "large",
+"product_price": "15000.00"
 }
-\`\`\` | \`\`\`json
+// Example Response Body
 {
-  "response": {
-    "id": 7,
-    "product_name": "Keripik Ori",
-    "product_type": "keripik pangsit",
-    "product_variant": "large",
-    "product_price": "15000.00",
-    "created_date": "2025-12-03T13:15:04.588Z"
-  }
+    "response": {
+        "id": 7,
+        "product_name": "Keripik Ori",
+        "product_type": "keripik pangsit",
+        "product_variant": "large",
+        "product_price": "15000.00",
+        "created_date": "2025-12-03T13:15:04.588Z"
+    }
 }
-\`\`\` |
+```
 
 
  
