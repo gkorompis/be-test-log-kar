@@ -33,7 +33,7 @@
 |------|------|------|------|------|------|
 | /product | GET | listProducts(needCounts:false) | to list products without addition quantity (count) information for each product_type | findAllProduct | req-1 |
 | /product | GET | listProducts(needCounts:true) | to list products with addition quantity (count) information for each product_type | findAllProductWithTypeCount | req-2, req-1 |
-| /product | POST | addNewProduct | adding product with fields product_name, product_type, product_variant, product_size, product_harga, and automatic created_date | createProduct | req-3, req-4 |
+| /product | POST | createNewProduct | adding product with fields product_name, product_type, product_variant, product_size, product_harga, and automatic created_date | insertProduct | req-3, req-4 |
 | /transaction | POST | addNewTransaction | adding transactionw with fields customer_name, product_name, product_size, product_type, product_quantity, and automatic transaction_date, transaction_id (unique) | createTransaction | req-5 |
 | /payment/transfer | PUT | authenticatePayment | this service will match transaction_total_price with default money | - | req-6 |
 | - | - | calculatePointsPerTransaction | this service will be called by authenticatePayment | getTransaction(id) | req-7, req-6 |
@@ -98,4 +98,31 @@ interface CustomerInsertRow{
     customer_points: number,
 }
 ```
+
+## 5. API Documentation
+
+### 5.1 Products
+
+| route | method | parameters | query | request body | expected response |
+|------|------|------|------|------|------|
+| /products | POST | - | - | 
+\`\`\`json  
+{  
+  "product_name": "Keripik Ori",  
+  "product_type": "keripik pangsit",  
+  "product_variant": "large",  
+  "product_price": "15000.00"  
+}  
+\`\`\` | \`\`\`json  
+  "response": {
+        "id": 7,
+        "product_name": "Keripik Ori",
+        "product_type": "keripik pangsit",
+        "product_variant": "large",
+        "product_price": "15000.00",
+        "created_date": "2025-12-03T13:15:04.588Z"
+    }
+\`\`\`
+
+
  
