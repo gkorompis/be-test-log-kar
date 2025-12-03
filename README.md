@@ -11,9 +11,11 @@ docker compose up -d
 #3. initiate table read in development phase
 docker exec -i postgres-db psql -U postgres -d bsnack < schema.sql
 ```
-Author's Disclaimer: "I noticed that Go language was originally expewcted to be implemented. While I might need around 1-2 weeks learning curve to properly keep up with Go language, as an alternative I'm using node.js for the backend, awhich aligns with my existing experience in MERN-based backend development. 
+```
+Author's Disclaimer: "I noticed that Go language was originally expewcted to be implemented. While I might need around 1-2 weeks learning curve to properly keep up with Go language, as an alternative I'm using node.js for the backend, which aligns with my existing experience in MERN-based backend development. 
 
 That said, I hope this submission can still demonstrate my ability in backend development that is fundamentally language-agnostic. I hope to show that I'm capable to carry out backend development task, especially in api MVC design, containerizing, and event-driven patterns."
+```
 
 ## 1. Business Requirements
 | No | Requirement | Group |
