@@ -121,9 +121,9 @@ interface CustomerInsertRow{
 | route | method | parameters | query | body |
 |------|------|------|------|------|
 | /products | POST | - | - | product_name, product_type, product_variant, product_price |
-```javascript
-// Example endpoint
-http:\/\/localhost:5001/product
+```bash
+#Example endpoint URL
+curl http://localhost:5001/product
 ```
 ```javascript
 // Example Request Body
@@ -149,15 +149,15 @@ http:\/\/localhost:5001/product
 | route | method | params | query | body |
 |------|------|------|------|------|
 | /products | GET | ?:productId | ?withQuantity=true | - |
-```javascript
-// Example endpoint get all product
-http:\/\/localhost:5001/product
+```bash
+#Example endpoint URL get all product
+curl http://localhost:5001/product
 
-// Example endpoint get all product withQuantity
-http:\/\/localhost:5001/product?withQuantity=true
+#Example endpoint URL get all product withQuantity
+curl http://localhost:5001/product?withQuantity=true
 
-// Example endpoint fetch on by params productId
-http:\/\/localhost:5001/product/id/8
+#Example endpoint URL fetch on by params productId
+curl http://localhost:5001/product/id/8
 ```
 ```javascript
 // Example Response Body with no query
