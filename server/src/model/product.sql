@@ -1,7 +1,7 @@
 CREATE TYPE product_type_enum AS ENUM ('keripik pangsit');
 CREATE TYPE product_variant_enum AS ENUM ('small','medium','large');
 
-CREATE TABLE products (
+CREATE TABLE IF NOT EXISTS products (
   id SERIAL PRIMARY KEY,
   product_name TEXT NOT NULL,
   product_type product_type_enum NOT NULL,

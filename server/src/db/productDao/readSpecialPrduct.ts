@@ -12,13 +12,16 @@ const readSpecialProduct = async(special_rule:string, productId?:string):Promise
 
         if(productId){
             const query = `
-                SELECT
-                    p.*,
-                    COUNT(*) OVER(
-                        PARTITION BY p.product_type, p.product_variant
-                    ) AS quantity
-                FROM products p
-                WHERE p.id = $1;`;
+                SELECT *
+                FROM (
+                    SELECT
+                        p.*,
+                        COUNT(*) OVER(
+                            PARTITION BY p.product_type, p.product_variant
+                        ) AS quantity
+                    FROM products p
+                ) AS sub
+                WHERE sub.id = $1;`;
             const values = [productId];
             const result = await pool.query(query, values);
             const rows = result.rows;
