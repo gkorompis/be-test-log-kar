@@ -67,8 +67,7 @@ interface ProductInsertRow {
     product_name: string,
     product_type: string, enum: ["keripik pangsit"],
     product_variant: string, enum: ["small", "medium", "lage"],
-    product_price: number,
-    created_date: Date
+    product_price: number
 }
 interface ProductViewRow {
     product_name: string,
@@ -122,6 +121,10 @@ interface CustomerInsertRow{
 | route | method | parameters | query | body |
 |------|------|------|------|------|
 | /products | POST | - | - | product_name, product_type, product_variant, product_price |
+```bash
+#Example endpoint URL
+curl http://localhost:5001/product
+```
 ```javascript
 // Example Request Body
 {
@@ -143,9 +146,19 @@ interface CustomerInsertRow{
 }
 ```
 
-| route | method | parameters | query | body |
+| route | method | params | query | body |
 |------|------|------|------|------|
-| /products | GET | - | ?withQuantity=true | - |
+| /products | GET | ?:productId | ?withQuantity=true | - |
+```bash
+#Example endpoint URL get all product
+curl http://localhost:5001/product
+
+#Example endpoint URL get all product withQuantity
+curl http://localhost:5001/product?withQuantity=true
+
+#Example endpoint URL fetch on by params productId
+curl http://localhost:5001/product/id/8
+```
 ```javascript
 // Example Response Body with no query
 {

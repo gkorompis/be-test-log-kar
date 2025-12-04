@@ -20,6 +20,11 @@ productRoute.get(
     '/',
     [],
     getController
+);
+productRoute.get(
+    '/id/:productId',
+    [],
+    getController
 )
 
 export default productRoute;
