@@ -122,6 +122,10 @@ interface CustomerInsertRow{
 |------|------|------|------|------|
 | /products | POST | - | - | product_name, product_type, product_variant, product_price |
 ```javascript
+// Example endpoint
+http:\/\/localhost:5001/product
+```
+```javascript
 // Example Request Body
 {
 "product_name": "Keripik Ori",
@@ -142,9 +146,19 @@ interface CustomerInsertRow{
 }
 ```
 
-| route | method | parameters | query | body |
+| route | method | params | query | body |
 |------|------|------|------|------|
-| /products | GET | - | ?withQuantity=true | - |
+| /products | GET | ?:productId | ?withQuantity=true | - |
+```javascript
+// Example endpoint get all product
+http:\/\/localhost:5001/product
+
+// Example endpoint get all product withQuantity
+http:\/\/localhost:5001/product?withQuantity=true
+
+// Example endpoint fetch on by params productId
+http:\/\/localhost:5001/product/id/8
+```
 ```javascript
 // Example Response Body with no query
 {
