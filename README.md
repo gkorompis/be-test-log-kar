@@ -210,12 +210,20 @@ curl http://localhost:5001/transaction
 // Example Response Body
 {
     "response": {
-        "id": "925004ab-514e-42bd-9808-e6747dccd883",
-        "customer_name": "loremipsum4",
-        "product_id": 6,
-        "quantity": 2,
-        "total_transaction": "30000.00",
-        "transaction_date": "2025-12-04T19:50:14.479Z"
+        "createdTransaction": {
+            "id": "957cbfec-4f8f-42f8-8fdc-dab92ce40f2a",
+            "customer_name": "loremipsum14",
+            "product_id": 6,
+            "quantity": 2,
+            "total_transaction": "30000.00",
+            "transaction_date": "2025-12-04T21:06:22.607Z"
+        },
+        "customerInfo": {
+            "id": 19,
+            "customer_name": "loremipsum14",
+            "points": 0
+        },
+        "isNewCustomer": true
     }
 }
 ```
