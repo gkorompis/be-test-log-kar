@@ -9,10 +9,12 @@ cd be-test-log-kar/server
 docker compose up --build -d
 
 #3. initiate table read in development phase
-docker exec -i postgres-db psql -U postgres -d bsnack < schema.sql
+docker exec -i postgres-db psql -U postgres -d bsnack < src/model/product.sql
+docker exec -i postgres-db psql -U postgres -d bsnack < src/model/transaction.sql
+docker exec -i postgres-db psql -U postgres -d bsnack < src/model/customer.sql
 ```
 
-Author's Disclaimer: "I noticed that Go language was originally expewcted to be implemented. While I might need around 1-2 weeks learning curve to properly keep up with Go language, as an alternative I'm using node.js for the backend, which aligns with my existing experience in MERN-based backend development. 
+Author's Disclaimer: "I noticed that Go language was originally expected to be implemented. While I might need around 1-2 weeks learning curve to properly keep up with Go language, as an alternative I'm using node.js for the backend, which aligns with my existing experience in MERN-based backend development. 
 
 That said, I hope this submission can still demonstrate my ability in backend development that is fundamentally language-agnostic. I hope to show that I'm capable to carry out backend development task, especially in api MVC design, containerizing, and event-driven patterns."
 
@@ -148,7 +150,7 @@ curl http://localhost:5001/product
 
 | route | method | params | query | body |
 |------|------|------|------|------|
-| /products | GET | ?:productId | ?withQuantity=true | - |
+| /products | GET | /id/:productId | ?withQuantity=true | - |
 ```bash
 #Example endpoint URL get all product
 curl http://localhost:5001/product
@@ -188,6 +190,112 @@ curl http://localhost:5001/product/id/8
     ]
 }
 ```
+
+### 5.2 Transactions
+| route | method | parameters | query | body |
+|------|------|------|------|------|
+| /transactions | POST | - | - | customer_name, product_id, quantity |
+
+```bash
+#Example endpoint URL
+curl http://localhost:5001/transaction
+```
+```javascript
+// Example Request Body
+{
+    "customer_name": "loremipsum4",
+    "product_id": 6,
+    "quantity": 2
+}
+// Example Response Body
+{
+    "response": {
+        "createdTransaction": {
+            "id": "957cbfec-4f8f-42f8-8fdc-dab92ce40f2a",
+            "customer_name": "loremipsum14",
+            "product_id": 6,
+            "quantity": 2,
+            "total_transaction": "30000.00",
+            "transaction_date": "2025-12-04T21:06:22.607Z"
+        },
+        "customerInfo": {
+            "id": 19,
+            "customer_name": "loremipsum14",
+            "points": 0
+        },
+        "isNewCustomer": true
+    }
+}
+```
+
+| route | method | params | query | body |
+|------|------|------|------|------|
+| /transaction | GET | /id/:transactionId | ?Relationship=true | - |
+
+```bash
+#Example endpoint URL get all transaction
+curl http://localhost:5001/transaction
+
+#Example endpoint URL get all transaction withQuantity
+curl http://localhost:5001/transaction?withRelationship=true
+
+#Example endpoint URL fetch on by params transactionId
+curl http://localhost:5001/transaction/id/8c7be4c8-5902-448a-bcf3-f221fedee6cc
+```
+```javascript
+// Example Response Body with no query
+{
+    "response": [{
+            "id": "8c7be4c8-5902-448a-bcf3-f221fedee6cc",
+            "customer_name": "loremipsum3",
+            "product_id": 6,
+            "quantity": 2,
+            "total_transaction": "30000.00",
+            "transaction_date": "2025-12-04T19:29:18.837Z"
+        }, 
+    // ...
+    ]
+}
+// Example Response Body with query = ?withRelationship=true
+{
+    "response": [{
+            "id": "925004ab-514e-42bd-9808-e6747dccd883",
+            "customer_name": "loremipsum4",
+            "product_name": "Keripik Ori",
+            "product_variant": "medium",
+            "quantity": 2,
+            "total_transaction": "30000.00",
+            "transaction_date": "2025-12-04T19:50:14.479Z"
+        }, 
+    // ...
+    ]
+}
+```
+
+### 5.3 Customer
+| route | method | params | query | body |
+|------|------|------|------|------|
+| /customer| GET | /id/:customerId | ?customer_name | - |
+```bash
+#Example endpoint URL get all customer
+curl http://localhost:5001/customer
+
+#Example endpoint URL fetch on by params customerId
+curl http://localhost:5001/customer/id/6
+```
+```javascript
+// Example Response Body with no query
+{
+    "response": [{
+            "id": 6,
+            "customer_name": "loremipsum",
+            "points": 0
+        }, 
+    // ...
+    ]
+}
+```
+
 
 
 

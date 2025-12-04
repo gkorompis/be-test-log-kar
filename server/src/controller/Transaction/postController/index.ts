@@ -1,4 +1,5 @@
 import type { Request, Response } from 'express';
+import transactionService from '../../../services/transaction/index.js';
 
 const controllerName = "postController";
 const group = "Transaction"
@@ -7,10 +8,17 @@ const transactionPostController = async (req: Request, res: Response) =>{
     try {
         //request parameters
         console.log(`>>>>${controllerName} at ${group}`);
-        const document = req.body || {};
+        const document = req.body || 
+        {
+            customer_name: "loremipsum",
+            product_id: 6,
+            quantity: 2
+        };
         
-        //dao
-        const response = {payload: "transaction post response"};
+        //service logic
+        const createdResult = await transactionService.createNewTransactionWithCustomer(document)
+
+        const response = createdResult;
 
         //response
         console.log(`>>>>response ${controllerName} at ${group}`, response);

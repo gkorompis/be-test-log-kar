@@ -11,3 +11,25 @@ export interface ProductViewRow {
   product_price: number;
   created_date: Date;
 }
+
+export type TransactionInsertRow = {
+  customer_name: string;  
+  product_id: number;
+  quantity: number;
+};
+export type TransactionViewRow = {
+  id: string;                   
+  customer_name: string;
+  product_name: string;
+  product_size: string | null;
+  product_variant: string | null;
+  quantity: number;
+  total_transaction: string;    
+  transaction_date: string;     
+};
+
+export type CustomerViewRow = {
+  id: number | string;
+  customer_name: string;  
+  points: number;
+};

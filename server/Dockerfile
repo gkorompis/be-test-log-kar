@@ -12,6 +12,7 @@ COPY tsconfig.json ./
 COPY src ./src
 
 # compile typescript to dist
+RUN rm -rf dist/*
 RUN npx tsc
 
 # expose port
