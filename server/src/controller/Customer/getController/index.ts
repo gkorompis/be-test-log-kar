@@ -1,4 +1,5 @@
 import type { Request, Response } from 'express';
+import customerService from '../../../services/customerServices/index.js';
 
 const controllerName = "getController";
 const group = "Customer"
@@ -7,10 +8,14 @@ const customerGetController = async (req: Request, res: Response) =>{
     try {
         //request parameters
         console.log(`>>>>${controllerName} at ${group}`);
-        const document = req.body || {};
+        const document = (req&&req.body) || {};
+        const query = (req&&req.query) || {};
+        const params = (req&&req.params) || {};
+        const {customer_name} = query;
+        const {customerId} = params;
         
-        //dao
-        const response = {payload: "customer get response", document};
+        //service logic
+        const response = await customerService.listAllCustomer();
 
         //response
         console.log(`>>>>response ${controllerName} at ${group}`, response);

@@ -27,3 +27,9 @@ export type TransactionViewRow = {
   total_transaction: string;    
   transaction_date: string;     
 };
+
+export type CustomerViewRow = {
+  id: number | string;
+  customer_name: string;  
+  points: number;
+};
