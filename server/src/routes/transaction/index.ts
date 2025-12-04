@@ -23,9 +23,9 @@ transactionRoute.get(
     getController
 )
 transactionRoute.get(
-    '/one/:id',
+    '/id/:transactionId',
     [],
-    getOneController
+    getController
 )
 
 export default transactionRoute;

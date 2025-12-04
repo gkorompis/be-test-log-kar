@@ -15,6 +15,12 @@ const transactionGetController = async (req: Request, res: Response) =>{
         const {transactionId} = params;
         
         //service logic
+        if(transactionId){
+            const responseService = await transactionService.listSpecialTransaction(transactionId)
+            const response = responseService;
+            console.log(`>>>>response withRelationship ${controllerName} at ${group}`, response);
+            return res.status(200).json({response});
+        }
         if(withRelationship){
             const responseService = await transactionService.listSpecialTransaction()
             const response = responseService;

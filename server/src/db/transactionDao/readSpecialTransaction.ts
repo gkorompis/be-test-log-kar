@@ -6,7 +6,26 @@ const schemaName = "product.sql"
 
 const readSpecialTransaction = async(transaction_id?:string):Promise<TransactionViewRow[]> => {
     try{
-        
+        if(transaction_id){
+            const query = `
+                SELECT
+                    t.id::text,
+                    c.customer_name,
+                    p.product_name,
+                    p.product_variant,
+                    t.quantity,
+                    t.total_transaction::text,
+                    t.transaction_date
+                FROM transactions t
+                JOIN customers c ON c.customer_name = t.customer_name
+                JOIN products  p ON p.id = t.product_id
+                WHERE t.id = $1
+                ORDER BY t.transaction_date DESC;
+            `;
+            const result = await pool.query(query, [transaction_id]);
+            const rows = result.rows;
+            return rows;
+        }
         const query = `
             SELECT
                 t.id::text,
