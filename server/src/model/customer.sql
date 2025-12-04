@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS customers (
     id SERIAL PRIMARY KEY,
     customer_name TEXT NOT NULL UNIQUE,
-    points INTEGER NOT NULL
-)
+    points INTEGER NOT NULL DEFAULT 0
+);
