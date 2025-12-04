@@ -1,4 +1,5 @@
 import type { Request, Response } from 'express';
+import productService from '../../../services/productServices/index.js';
 
 const controllerName = "getController";
 const group = "Product"
@@ -9,8 +10,9 @@ const productGetController = async (req: Request, res: Response) =>{
         console.log(`>>>>${controllerName} at ${group}`);
         const document = req.body || {};
         
-        //dao
-        const response = {payload: "product get response", document};
+        //service logic
+        const responseService = await productService.listAllProduct();
+        const response = responseService;
 
         //response
         console.log(`>>>>response ${controllerName} at ${group}`, response);
