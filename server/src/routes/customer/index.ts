@@ -18,9 +18,9 @@ customerRoute.get(
     getController
 )
 customerRoute.get(
-    '/one/:id',
+    '/id/:customerId',
     [],
-    getOneController
+    getController
 )
 
 export default customerRoute;

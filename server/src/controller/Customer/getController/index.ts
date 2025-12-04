@@ -15,6 +15,18 @@ const customerGetController = async (req: Request, res: Response) =>{
         const {customerId} = params;
         
         //service logic
+        if(customerId){
+            const responseService = await customerService.listSpecialCustomer(+customerId)
+            const response = responseService;
+            console.log(`>>>>response params customerId ${controllerName} at ${group}`, response);
+            return res.status(200).json({response});
+        }
+        if(customer_name){
+            const responseService = await customerService.listSpecialCustomer(0, customer_name as string)
+            const response = responseService;
+            console.log(`>>>>response params customer_name ${controllerName} at ${group}`, response);
+            return res.status(200).json({response});
+        }
         const response = await customerService.listAllCustomer();
 
         //response
