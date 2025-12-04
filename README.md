@@ -229,7 +229,7 @@ curl http://localhost:5001/transaction
 curl http://localhost:5001/transaction?withRelationship=true
 
 #Example endpoint URL fetch on by params transactionId
-# curl http://localhost:5001/transaction/id/8
+curl http://localhost:5001/transaction/id/8c7be4c8-5902-448a-bcf3-f221fedee6cc
 ```
 ```javascript
 // Example Response Body with no query
