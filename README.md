@@ -145,9 +145,9 @@ interface CustomerInsertRow{
 
 | route | method | parameters | query | body |
 |------|------|------|------|------|
-| /products | GET | - | - | - |
+| /products | GET | - | ?withQuantity=true | - |
 ```javascript
-// Example Response Body
+// Example Response Body with no query
 {
     "response": [{
         "id": 1,
@@ -156,6 +156,20 @@ interface CustomerInsertRow{
         "product_variant": "large",
         "product_price": "15000.00",
         "created_date": "2025-12-03T13:15:04.588Z"
+    }, 
+    // ...
+    ]
+}
+// Example Response Body with query = ?withQuantity=true
+{
+    "response": [{
+        "id": 1,
+        "product_name": "Keripik Ori",
+        "product_type": "keripik pangsit",
+        "product_variant": "large",
+        "product_price": "15000.00",
+        "created_date": "2025-12-03T13:15:04.588Z",
+        "quantity": "8"
     }, 
     // ...
     ]
