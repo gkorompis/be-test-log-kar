@@ -10,16 +10,24 @@ const productGetController = async (req: Request, res: Response) =>{
         console.log(`>>>>${controllerName} at ${group}`);
         const document = (req&&req.body) || {};
         const query = (req&&req.query) || {};
-        const {withQuantity}=query;
+        const params = (req&&req.params) || {};
+        const {withQuantity} = query;
+        const {productId} = params;
 
         //service logic
-        console.log(">>>query get controller", query, withQuantity);
+        console.log(">>>query get controller", query, withQuantity, params);
+        if(productId){
+            const responseService = await productService.listAllProductWithQuantity(productId);
+            const response = responseService;
+            console.log(`>>>>response controller withQuantity and productId ${controllerName} at ${group}`, response);
+            return res.status(200).json({response});
+        };
         if(withQuantity){
             const responseService = await productService.listAllProductWithQuantity();
             const response = responseService;
-            console.log(`>>>>response ${controllerName} at ${group}`, response);
+            console.log(`>>>>response controller withQuantity ${controllerName} at ${group}`, response);
             return res.status(200).json({response});
-        }
+        };
         const responseService = await productService.listAllProduct();
         const response = responseService;
 

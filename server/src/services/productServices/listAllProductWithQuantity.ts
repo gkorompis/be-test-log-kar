@@ -7,13 +7,19 @@ const {
     readSpecialProduct
 } = productDao
 
-export const listAllProductWithQuantity = async (): Promise<ProductViewRow[]> => {
+export const listAllProductWithQuantity = async (productId?:string): Promise<ProductViewRow[]> => {
     try {
         // expecting no body
         // expecting no queries
         // expecting no params
 
         // fetch product list using readProduct from productDao
+        if(productId){
+            const listedProduct = await readSpecialProduct("quantity", productId);
+            console.log(`>>>service - listAllProductWithQuantity readSpecialProduct with productId:${productId} response`, listedProduct);
+            return listedProduct;
+        }
+
         const listedProduct = await readSpecialProduct("quantity");
         console.log(">>>service - listAllProductWithQuantity readSpecialProduct response", listedProduct);
         return listedProduct;

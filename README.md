@@ -67,8 +67,7 @@ interface ProductInsertRow {
     product_name: string,
     product_type: string, enum: ["keripik pangsit"],
     product_variant: string, enum: ["small", "medium", "lage"],
-    product_price: number,
-    created_date: Date
+    product_price: number
 }
 interface ProductViewRow {
     product_name: string,
