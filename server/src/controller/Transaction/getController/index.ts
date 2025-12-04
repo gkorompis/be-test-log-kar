@@ -11,10 +11,16 @@ const transactionGetController = async (req: Request, res: Response) =>{
         const document = (req&&req.body) || {};
         const query = (req&&req.query) || {};
         const params = (req&&req.params) || {};
-        const {withQuantity} = query;
+        const {withRelationship} = query;
         const {transactionId} = params;
         
         //service logic
+        if(withRelationship){
+            const responseService = await transactionService.listSpecialTransaction()
+            const response = responseService;
+            console.log(`>>>>response withRelationship ${controllerName} at ${group}`, response);
+            return res.status(200).json({response});
+        }
         const responseService = await transactionService.listAllTransaction()
         const response = responseService;
 
