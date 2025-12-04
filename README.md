@@ -188,6 +188,79 @@ curl http://localhost:5001/product/id/8
     ]
 }
 ```
+### 5.2 Transactions
+| route | method | parameters | query | body |
+|------|------|------|------|------|
+| /transactions | POST | - | - | customer_name, product_id, quantity |
+
+```bash
+#Example endpoint URL
+curl http://localhost:5001/transaction
+```
+```javascript
+// Example Request Body
+{
+    "customer_name": "loremipsum4",
+    "product_id": 6,
+    "quantity": 2
+}
+// Example Response Body
+{
+    "response": {
+        "id": "925004ab-514e-42bd-9808-e6747dccd883",
+        "customer_name": "loremipsum4",
+        "product_id": 6,
+        "quantity": 2,
+        "total_transaction": "30000.00",
+        "transaction_date": "2025-12-04T19:50:14.479Z"
+    }
+}
+```
+
+| route | method | params | query | body |
+|------|------|------|------|------|
+| /transaction | GET | -| ?Relationship=true | - |
+
+```bash
+#Example endpoint URL get all transaction
+curl http://localhost:5001/transaction
+
+#Example endpoint URL get all transaction withQuantity
+curl http://localhost:5001/transaction?withRelationship=true
+
+#Example endpoint URL fetch on by params transactionId
+# curl http://localhost:5001/transaction/id/8
+```
+```javascript
+// Example Response Body with no query
+{
+    "response": [{
+            "id": "8c7be4c8-5902-448a-bcf3-f221fedee6cc",
+            "customer_name": "loremipsum3",
+            "product_id": 6,
+            "quantity": 2,
+            "total_transaction": "30000.00",
+            "transaction_date": "2025-12-04T19:29:18.837Z"
+        }, 
+    // ...
+    ]
+}
+// Example Response Body with query = ?withRelationship=true
+{
+    "response": [{
+            "id": "925004ab-514e-42bd-9808-e6747dccd883",
+            "customer_name": "loremipsum4",
+            "product_name": "Keripik Ori",
+            "product_variant": "medium",
+            "quantity": 2,
+            "total_transaction": "30000.00",
+            "transaction_date": "2025-12-04T19:50:14.479Z"
+        }, 
+    // ...
+    ]
+}
+```
+
 
 
 
