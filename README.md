@@ -20,7 +20,7 @@ That said, I hope this submission can still demonstrate my ability in backend de
 
 ## 1. Business Requirements
 | No | Status | Requirement | Group |
-|---|---------------------|----------|
+|---|--------|-------------|----------|
 | req-1 | done | user can list product | req-1 |
 | req-2 | done | user can list product's availability (quantity) | req-1 |
 | req-3 | done | user can add product by inserting: product_name, product_type, product_variant, product_size, product_harga | req-3 | 
@@ -120,7 +120,7 @@ interface CustomerInsertRow{
 
 ### 5.1 Products
 
-| route | method | parameters | query | body |
+| route | method | parameters | query | request body |
 |------|------|------|------|------|
 | /products | POST | - | - | product_name, product_type, product_variant, product_price |
 ```bash
@@ -148,7 +148,7 @@ curl http://localhost:5001/product
 }
 ```
 
-| route | method | params | query | body |
+| route | method | params | query | request body |
 |------|------|------|------|------|
 | /products | GET | /id/:productId | ?withQuantity=true | - |
 ```bash
@@ -192,7 +192,7 @@ curl http://localhost:5001/product/id/8
 ```
 
 ### 5.2 Transactions
-| route | method | parameters | query | body |
+| route | method | parameters | query | request body |
 |------|------|------|------|------|
 | /transactions | POST | - | - | customer_name, product_id, quantity |
 
@@ -231,7 +231,7 @@ curl http://localhost:5001/transaction
 }
 ```
 
-| route | method | params | query | body |
+| route | method | params | query | request body |
 |------|------|------|------|------|
 | /transaction | GET | /id/:transactionId | ?Relationship=true | - |
 
@@ -276,7 +276,7 @@ curl http://localhost:5001/transaction/id/8c7be4c8-5902-448a-bcf3-f221fedee6cc
 ```
 
 ### 5.3 Customer
-| route | method | params | query | body |
+| route | method | params | query | request body |
 |------|------|------|------|------|
 | /customer| GET | /id/:customerId | ?customer_name | - |
 ```bash
