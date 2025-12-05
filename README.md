@@ -19,23 +19,23 @@ Author's Disclaimer: "I noticed that Go language was originally expected to be i
 That said, I hope this submission can still demonstrate my ability in backend development that is fundamentally language-agnostic. I hope to show that I'm capable to carry out backend development task, especially in api MVC design, containerizing, and event-driven patterns."
 
 ## 1. Business Requirements
-| No | Requirement | Group |
+| No | Status | Requirement | Group |
 |---|---------------------|----------|
-| req-1 | user can list product | req-1 |
-| req-2 | user can list product's availability (quantity) | req-1 |
-| req-3 | user can add product by inserting: product_name, product_type, product_variant, product_size, product_harga | req-3 | 
-| req-4 | system can automataticaly record product created_date | req-3 |
-| req-5 | user can make new transaction | req-5 |
-| req-6 | system can authenticate payment by matching transaction_total_price with money | req-6 |
-| req-7 | system can calculate points generated per transaction with unique id | req-6 |
-| req-8 | system can register new customer by inserting: customer_name, customer_points | req-6 |
-| req-9 | system can check whether customers are new or existing | req-6 |
-| req-10 | system can update by adding customer_points for existing customer | req-6 |
-| req-11 | user can redeem point | req-11 |
-| req-12 | system can map size with price | req-11 |
-| req-13 | system can map authenticate redeem by matching size price with customer_points | req-11 |
-| req-14 | system can update by decreasing customer_points after redeem | req-11 |
-| req-15 | system can update transaction_status of transaction_id after payment | req-6 |
+| req-1 | done | user can list product | req-1 |
+| req-2 | done | user can list product's availability (quantity) | req-1 |
+| req-3 | done | user can add product by inserting: product_name, product_type, product_variant, product_size, product_harga | req-3 | 
+| req-4 | done | system can automataticaly record product created_date | req-3 |
+| req-5 | done | user can make new transaction | req-5 |
+| req-6 | - | system can authenticate payment by matching transaction_total_price with money | req-6 |
+| req-7 | done | system can calculate points generated per transaction with unique id | req-6 |
+| req-8 | done | system can register new customer by inserting: customer_name, customer_points | req-6 |
+| req-9 | done | system can check whether customers are new or existing | req-6 |
+| req-10 | done | system can update by adding customer_points for existing customer | req-6 |
+| req-11 | - | user can redeem point | req-11 |
+| req-12 | - | system can map size with price | req-11 |
+| req-13 | - | system can map authenticate redeem by matching size price with customer_points | req-11 |
+| req-14 | - | system can update by decreasing customer_points after redeem | req-11 |
+| req-15 | - | system can update transaction_status of transaction_id after payment | req-6 |
 
 ## 2. Route Layers CRUD
 | Route | Create | Read (All, One) | Update (One) | Delete (One) |
@@ -203,27 +203,30 @@ curl http://localhost:5001/transaction
 ```javascript
 // Example Request Body
 {
-    "customer_name": "loremipsum4",
-    "product_id": 6,
-    "quantity": 2
+    "customer_name": "loremipsum25",
+    "product_id": 2,
+    "quantity": 1
 }
 // Example Response Body
 {
     "response": {
         "createdTransaction": {
-            "id": "957cbfec-4f8f-42f8-8fdc-dab92ce40f2a",
-            "customer_name": "loremipsum14",
-            "product_id": 6,
-            "quantity": 2,
-            "total_transaction": "30000.00",
-            "transaction_date": "2025-12-04T21:06:22.607Z"
+            "id": "a4575014-21b5-4a66-a537-85255e479bd4",
+            "customer_name": "loremipsum25",
+            "product_id": 2,
+            "quantity": 1,
+            "total_transaction": "15000.00",
+            "transaction_date": "2025-12-05T20:46:33.967Z"
         },
-        "customerInfo": {
-            "id": 19,
-            "customer_name": "loremipsum14",
-            "points": 0
-        },
-        "isNewCustomer": true
+        "customerInfo": [
+            {
+                "id": 37,
+                "customer_name": "loremipsum25",
+                "points": 210
+            }
+        ],
+        "isNewCustomer": false,
+        "pointFromThisTransaction": 15
     }
 }
 ```
