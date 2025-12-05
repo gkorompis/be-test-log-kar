@@ -16,7 +16,10 @@ const insertTransaction = async(document: TransactionInsertRow)=> {
             ON CONFLICT (customer_name) DO NOTHING
             RETURNING *;
         `;
-        const upsertRes:any = await client.query(upsertCustomerQuery, [document.customer_name]);
+        const upsertCustomerValue=[
+            document.customer_name,
+        ]
+        const upsertRes:any = await client.query(upsertCustomerQuery, upsertCustomerValue);
         console.log(">>>upsertingCustomer", upsertRes );
 
         let customerUser: string;
@@ -27,13 +30,13 @@ const insertTransaction = async(document: TransactionInsertRow)=> {
         console.log("newly_created_customer", customerUser);
         } else {
         isNewCustomer=false;
-        const queryExistingCustomer = `SELECT * FROM customers WHERE customer_name = $1`;
+        const queryExistingCustomer = `SELECT * FROM customers WHERE customer_name = $1;`;
         const valueExistingCustomer = [document.customer_name]
         const existing_customer = await client.query(queryExistingCustomer,valueExistingCustomer);
         console.log(">>>existing_customer", existing_customer);
         if (existing_customer.rowCount === 0) throw new Error("Failed to handle customer exists: customer does not exist.");
+        customerDetail = existing_customer.rows[0];
         customerUser = existing_customer.rows[0].customer_name;
-        customerDetail=existing_customer.rows[0];
         }
 
         const queryTransaction = `
@@ -47,7 +50,8 @@ const insertTransaction = async(document: TransactionInsertRow)=> {
             document.quantity
         ];
         const result = await client.query(queryTransaction, valuesTransaction);
-        console.log(">>>insertTransaction Final Response", result, result.rows[0])
+        console.log(">>>insertTransaction Final Response", result.rows[0]);
+
         await client.query("COMMIT");
         const insertResult ={
             createdTransaction: result.rows[0],

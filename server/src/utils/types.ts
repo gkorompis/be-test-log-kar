@@ -16,6 +16,7 @@ export type TransactionInsertRow = {
   customer_name: string;  
   product_id: number;
   quantity: number;
+  points?: number | string;
 };
 export type TransactionViewRow = {
   id: string;                   
@@ -33,3 +34,9 @@ export type CustomerViewRow = {
   customer_name: string;  
   points: number;
 };
+
+export type CustomerPatchObject = {
+  patchReference: string;
+  listPatchField: string[],
+  listPatchValue: any[]
+}
